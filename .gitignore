@@ -1,0 +1,37 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Node
+node_modules/
+
+# Local Data Storage
+local-data/
+
+# Build output
+.vite/
+dist/
+
+# Coverage
+# coverage/
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Env and lock
+.env
+.env.*
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Caches
+*.cache/
+.cache/

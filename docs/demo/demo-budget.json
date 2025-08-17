@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "exportedAt": "2025-08-17T15:01:18.838Z",
+  "data": {
+    "settings": {
+      "bankStart": 300,
+      "month": 8,
+      "year": 2025
+    },
+    "incomes": [
+      {
+        "id": "inc1",
+        "name": "Paycheck 1",
+        "amount": 2000,
+        "day": 1
+      },
+      {
+        "id": "inc2",
+        "name": "Paycheck 2",
+        "amount": 1200,
+        "day": 15
+      }
+    ],
+    "incomeModifiers": [
+      {
+        "effectiveISO": "2025-01-01",
+        "percent": 0
+      }
+    ],
+    "oneTimeIncomes": [
+      {
+        "id": "ot1",
+        "name": "Bonus",
+        "type": "Bonus",
+        "amount": 1200,
+        "dateISO": "2025-11-10"
+      }
+    ],
+    "liabilities": [
+      {
+        "id": "rent",
+        "name": "Rent",
+        "type": "Living Expense",
+        "amount": 2800,
+        "day": 3,
+        "source": "Bank",
+        "frequency": "exact"
+      },
+      {
+        "id": "water",
+        "name": "Water",
+        "type": "Utility",
+        "amount": 50,
+        "day": 7,
+        "source": "Bank",
+        "frequency": "exact"
+      },
+      {
+        "id": "netflix",
+        "name": "Netflix",
+        "type": "Subscription",
+        "amount": 16,
+        "day": 10,
+        "source": "Bank",
+        "frequency": "exact"
+      },
+      {
+        "id": "carloan",
+        "name": "Car Loan",
+        "type": "Loan",
+        "amount": 350,
+        "day": 12,
+        "source": "Bank",
+        "frequency": "exact",
+        "loan": {
+          "originationISO": "2025-08-01",
+          "termMonths": 2,
+          "rate": 0.049,
+          "originalAmount": 15000
+        }
+      },
+      {
+        "id": "groceries",
+        "name": "Groceries",
+        "type": "Living Expense",
+        "amount": 300,
+        "day": 5,
+        "source": "chase",
+        "frequency": "exact"
+      },
+      {
+        "id": "gas",
+        "name": "Gas",
+        "type": "Living Expense",
+        "amount": 40,
+        "day": 9,
+        "source": "chase",
+        "frequency": "weekly"
+      },
+      {
+        "id": "spotify",
+        "name": "Spotify",
+        "type": "Subscription",
+        "amount": 11,
+        "day": 8,
+        "source": "cap1",
+        "frequency": "exact"
+      }
+    ],
+    "cards": [
+      {
+        "id": "chase",
+        "name": "Chase United",
+        "apr": 0.2499,
+        "dueDay": 15,
+        "carryPct": 0.25,
+        "startBalance": 1500,
+        "minPct": 0.03,
+        "creditLimit": 6000,
+        "overLimitAdhocPct": 1
+      },
+      {
+        "id": "cap1",
+        "name": "Capital One",
+        "apr": 0.2499,
+        "dueDay": 12,
+        "carryPct": 0.1,
+        "startBalance": 800,
+        "minPct": 0.03,
+        "creditLimit": 4000,
+        "overLimitAdhocPct": 1
+      }
+    ]
+  }
+}
