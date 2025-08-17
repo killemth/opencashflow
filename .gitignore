@@ -17,7 +17,7 @@ local-data/
 dist/
 
 # Coverage
-# coverage/
+coverage/
 
 # Editor/OS
 .vscode/
