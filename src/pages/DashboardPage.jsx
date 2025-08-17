@@ -225,7 +225,7 @@ function buildDayBullets(state, d, y, m) {
   }
   // Liabilities (bank or card)
   for (const liab of state.liabilities || []) {
-    if (occursOn(liab, d.day, dim)) {
+    if (occursOn(liab, d.day, dim, y, m)) {
       const amt = Number(liab.amount) || 0;
       const src = String(liab.source || 'Bank');
       const isBank = src.toLowerCase().startsWith('bank');

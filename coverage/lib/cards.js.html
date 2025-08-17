@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>0/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/9</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>0/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -81,42 +81,42 @@
 <a name='L16'></a><a href='#L16'>16</a>
 <a name='L17'></a><a href='#L17'>17</a>
 <a name='L18'></a><a href='#L18'>18</a>
-<a name='L19'></a><a href='#L19'>19</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { CC_MIN_PAYMENT_DOLLARS, DEFAULT_CC_MIN_PCT, DEFAULT_CC_OVERLIMIT_PCT } from './constants';
-&nbsp;
-export function cardMinPayment(balance, carryPct, minPct) {
-  const carry = Math.max(0, Math.min(1, Number(carryPct) <span class="branch-0 cbranch-no" title="branch not covered" >|| 0)</span>);
-  const desiredCarry = balance * carry;
-  const paydownToCarry = Math.max(0, balance - desiredCarry);
-  const pct = Number.isFinite(Number(minPct)) ? Math.max(0, Math.min(1, Number(minPct))) <span class="branch-0 cbranch-no" title="branch not covered" >: DEFAULT_CC_MIN_PCT;</span>
-  const minPay = Math.max(CC_MIN_PAYMENT_DOLLARS, pct * balance);
-  return Math.min(Math.max(paydownToCarry, minPay), balance);
-}
-&nbsp;
-export function overLimitAdhoc(balance, creditLimit, pct = DEFAULT_CC_OVERLIMIT_PCT) {
-  const limit = Math.max(0, Number(creditLimit) || 0);
-  if (limit &lt;= 0 || balance &lt;= limit) return 0;
-  const over = balance - limit;
-  const p = Math.max(0, Math.min(1, Number(pct) <span class="branch-0 cbranch-no" title="branch not covered" >?? DEFAULT_CC_OVERLIMIT_PCT)</span>);
-  return Math.min(balance, over * p);
-}
+<a name='L19'></a><a href='#L19'>19</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { CC_MIN_PAYMENT_DOLLARS, DEFAULT_CC_MIN_PCT, DEFAULT_CC_OVERLIMIT_PCT } from './constants';</span></span></span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export function cardMinPayment(balance, carryPct, minPct) {</span>
+<span class="cstat-no" title="statement not covered" >  const carry = Math.max(0, Math.min(1, Number(carryPct) || 0));</span>
+<span class="cstat-no" title="statement not covered" >  const desiredCarry = balance * carry;</span>
+<span class="cstat-no" title="statement not covered" >  const paydownToCarry = Math.max(0, balance - desiredCarry);</span>
+<span class="cstat-no" title="statement not covered" >  const pct = Number.isFinite(Number(minPct)) ? Math.max(0, Math.min(1, Number(minPct))) : DEFAULT_CC_MIN_PCT;</span>
+<span class="cstat-no" title="statement not covered" >  const minPay = Math.max(CC_MIN_PAYMENT_DOLLARS, pct * balance);</span>
+<span class="cstat-no" title="statement not covered" >  return Math.min(Math.max(paydownToCarry, minPay), balance);</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export function overLimitAdhoc(balance, creditLimit, pct = DEFAULT_CC_OVERLIMIT_PCT) {</span>
+<span class="cstat-no" title="statement not covered" >  const limit = Math.max(0, Number(creditLimit) || 0);</span>
+<span class="cstat-no" title="statement not covered" >  if (limit &lt;= 0 || balance &lt;= limit) return 0;</span>
+<span class="cstat-no" title="statement not covered" >  const over = balance - limit;</span>
+<span class="cstat-no" title="statement not covered" >  const p = Math.max(0, Math.min(1, Number(pct) ?? DEFAULT_CC_OVERLIMIT_PCT));</span>
+<span class="cstat-no" title="statement not covered" >  return Math.min(balance, over * p);</span>
+<span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -124,7 +124,7 @@ export function overLimitAdhoc(balance, creditLimit, pct = DEFAULT_CC_OVERLIMIT_
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-17T14:32:47.392Z
+                at 2025-08-17T22:26:44.235Z
             </div>
         <script src="../prettify.js"></script>
         <script>

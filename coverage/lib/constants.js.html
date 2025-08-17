@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/13</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/13</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -76,32 +76,35 @@
 <a name='L11'></a><a href='#L11'>11</a>
 <a name='L12'></a><a href='#L12'>12</a>
 <a name='L13'></a><a href='#L13'>13</a>
-<a name='L14'></a><a href='#L14'>14</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const key = "budget-sim-v1";
-export const SCHEMA_VERSION = 1;
-export const CC_MIN_PAYMENT_DOLLARS = 25;
-export const DEFAULT_CC_MIN_PCT = 0.03;
-export const DEFAULT_CC_CREDIT_LIMIT = 5000;
-export const DEFAULT_CC_OVERLIMIT_PCT = 1.0;
-export const LIABILITY_TYPES = ["Utility", "Subscription", "Loan", "Living Expense"];
-export const LIABILITY_FREQUENCIES = [
-  { value: "exact", label: "Exact day" },
-  { value: "daily", label: "Daily" },
-  { value: "everyOtherDay", label: "Every other day" },
-  { value: "weekly", label: "Weekly" },
-];
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >export const key = "budget-sim-v1";</span></span></span>
+<span class="cstat-no" title="statement not covered" >export const SCHEMA_VERSION = 1;</span>
+<span class="cstat-no" title="statement not covered" >export const CC_MIN_PAYMENT_DOLLARS = 25;</span>
+<span class="cstat-no" title="statement not covered" >export const DEFAULT_CC_MIN_PCT = 0.03;</span>
+<span class="cstat-no" title="statement not covered" >export const DEFAULT_CC_CREDIT_LIMIT = 5000;</span>
+<span class="cstat-no" title="statement not covered" >export const DEFAULT_CC_OVERLIMIT_PCT = 1.0;</span>
+<span class="cstat-no" title="statement not covered" >export const LIABILITY_TYPES = ["Utility", "Subscription", "Loan", "Living Expense"];</span>
+<span class="cstat-no" title="statement not covered" >export const LIABILITY_FREQUENCIES = [</span>
+<span class="cstat-no" title="statement not covered" >  { value: "exact", label: "Exact day" },</span>
+<span class="cstat-no" title="statement not covered" >  { value: "daily", label: "Daily" },</span>
+<span class="cstat-no" title="statement not covered" >  { value: "everyOtherDay", label: "Every other day" },</span>
+<span class="cstat-no" title="statement not covered" >  { value: "weekly", label: "Weekly" },</span>
+<span class="cstat-no" title="statement not covered" >  { value: "annual", label: "Annual" }</span>
+<span class="cstat-no" title="statement not covered" >];</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -109,7 +112,7 @@ export const LIABILITY_FREQUENCIES = [
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-17T14:32:47.392Z
+                at 2025-08-17T22:26:44.235Z
             </div>
         <script src="../prettify.js"></script>
         <script>

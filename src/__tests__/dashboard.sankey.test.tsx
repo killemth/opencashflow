@@ -172,3 +172,31 @@ describe('computeMonthlySankeyData basic shape', () => {
     expect(names).toContain('Cat: CC Payment')
   })
 })
+
+describe('Annual liabilities in Sankey', () => {
+  it('includes an annual bank-paid liability in current month', () => {
+    const state = { liabilities:[{ id:'l1', name:'Insurance', type:'Subscription', amount:600, day:10, month:8, frequency:'annual', source:'Bank' }], incomes:[], cards:[] }
+    const sim = { year:2025, month:8, days:Array.from({length:31},(_,i)=>({day:i+1, bankIn:0, bankOut:i+1===10?600:0, bankOutPlanned:i+1===10?600:0, bankBalance:0, ccCharges:{}, ccPayments:{}, ccInterest:{}, ccPaymentsPlanned:{}, ccNetChange:{}, overLimitCards:[], loanMaturities:[], underfunded:false, cardBalances:{} })), cardsSummary:{}, endBank:0, requiredStartingBank:0 }
+    const data = computeMonthlySankeyData(state, sim, { expandedTypes:new Set() })
+    const subLink = data.links.find(l => data.nodes[l.target]?.name === 'Cat: Subscription' && data.nodes[l.source]?.name === 'Bank')
+    expect(subLink?.value).toBeGreaterThan(0)
+  })
+
+  it('excludes an annual liability when month does not match', () => {
+    const state = { liabilities:[{ id:'l1', name:'Insurance', type:'Subscription', amount:600, day:10, month:9, frequency:'annual', source:'Bank' }], incomes:[], cards:[] }
+    const sim = { year:2025, month:8, days:Array.from({length:31},(_,i)=>({day:i+1, bankIn:0, bankOut:0, bankOutPlanned:0, bankBalance:0, ccCharges:{}, ccPayments:{}, ccInterest:{}, ccPaymentsPlanned:{}, ccNetChange:{}, overLimitCards:[], loanMaturities:[], underfunded:false, cardBalances:{} })), cardsSummary:{}, endBank:0, requiredStartingBank:0 }
+    const data = computeMonthlySankeyData(state, sim, { expandedTypes:new Set() })
+    const subLink = data.links.find(l => data.nodes[l.target]?.name === 'Cat: Subscription')
+    expect(subLink).toBeUndefined()
+  })
+
+  it('includes annual card-charged liability into credit source and item when expanded', () => {
+    const state = { cards:[{ id:'c1', name:'Card One', dueDay:15, apr:0.2, minPct:0.03, creditLimit:5000 }], liabilities:[{ id:'l1', name:'Annual Fee', type:'Subscription', amount:120, day:5, month:8, frequency:'annual', source:'c1' }], incomes:[] }
+    const sim = { year:2025, month:8, days:Array.from({length:31},(_,i)=>({day:i+1, bankIn:0, bankOut:0, bankOutPlanned:0, bankBalance:0, ccCharges:{}, ccPayments:{}, ccInterest:{}, ccPaymentsPlanned:{}, ccNetChange:{}, overLimitCards:[], loanMaturities:[], underfunded:false, cardBalances:{} })), cardsSummary:{}, endBank:0, requiredStartingBank:0 }
+    const data = computeMonthlySankeyData(state, sim, { expandedTypes:new Set(['Subscription']) })
+    const creditToCat = data.links.find(l => data.nodes[l.source]?.name === 'Credit Cards' && data.nodes[l.target]?.name === 'Cat: Subscription')
+    expect(creditToCat?.value).toBeGreaterThan(0)
+    const itemNode = data.nodes.find(n => /Bill: Annual Fee/.test(n.name))
+    expect(itemNode).toBeTruthy()
+  })
+})
