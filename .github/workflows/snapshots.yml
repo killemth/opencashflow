@@ -1,24 +1,45 @@
-name: Snapshots
+name: Snapshots (PR)
 
 on:
-  workflow_run:
-    workflows: [ CI ]
-    types: [ completed ]
+  pull_request:
     branches: [ main ]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pr-snapshots-${{ github.head_ref }}
+  cancel-in-progress: true
 
 jobs:
   snapshots:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run snap
-      - name: Upload screenshots
+      - run: npm install
+      - name: Generate screenshots
+        run: npm run snap
+      - name: Commit screenshots (if changed)
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/images
+          if git diff --cached --quiet; then
+            echo "No screenshot changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: update screenshots [skip ci]"
+          git push origin "${GITHUB_HEAD_REF:-${{ github.head_ref }}}"
+      - name: Upload screenshots artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: screenshots
