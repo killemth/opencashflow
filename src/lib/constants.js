@@ -10,4 +10,5 @@ export const LIABILITY_FREQUENCIES = [
   { value: "daily", label: "Daily" },
   { value: "everyOtherDay", label: "Every other day" },
   { value: "weekly", label: "Weekly" },
+  { value: "annual", label: "Annual" }
 ];

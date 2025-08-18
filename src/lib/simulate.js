@@ -17,12 +17,16 @@ const parseISODateOnly = (s) => {
 const addMonths = (date, n) => { const d = new Date(date); d.setMonth(d.getMonth() + (Number(n)||0)); return d; };
 const dateKey = (y,m,d)=> y*10000 + m*100 + d;
 
-export function occursOn(liab, d, dim) {
+export function occursOn(liab, d, dim, y, m) {
   const freq = liab.frequency || 'exact';
   const anchor = Math.min(dim, Math.max(1, Number(liab.day) || 1));
   if (freq === 'daily') return true;
   if (freq === 'everyOtherDay') return d >= anchor && ((d - anchor) % 2 === 0);
   if (freq === 'weekly') return d >= anchor && ((d - anchor) % 7 === 0);
+  if (freq === 'annual') {
+    const mo = Number(liab.month) || m; // default to evaluated month
+    return m === mo && d === anchor;
+  }
   return d === anchor;
 }
 
@@ -124,7 +128,7 @@ export function simulate(state) {
         if (curKey > matKey) loanActive = false;
         if (curKey === matKey) loanMaturities.push({ id: liab.id, name: liab.name || 'Loan', monthlyAmountSaved: Number(liab.amount)||0 });
       }
-      if (loanActive && occursOn(liab, d, dim)) {
+      if (loanActive && occursOn(liab, d, dim, year, month)) {
         const amt = Number(liab.amount) || 0;
         const src = liab.source || "Bank";
         if (String(src).toLowerCase().startsWith("bank")) {

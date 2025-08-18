@@ -25,6 +25,16 @@ export default function LiabilitiesPage({ state, setState, settings, sim, dayOpt
   const [confirm, setConfirm] = useState({ open:false, onYes: null, text:'' });
   const sortIcon = (key) => liabSort.key !== key ? '' : (liabSort.dir === 'asc' ? '▲' : '▼');
 
+  const monthShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const monthOptions = monthShort.map((n,i)=>({ label:n, value:i+1 }));
+  const freqOptionsShort = [
+    { value:'exact', label:'Exact' },
+    { value:'daily', label:'Daily' },
+    { value:'everyOtherDay', label:'Every other' },
+    { value:'weekly', label:'Weekly' },
+    { value:'annual', label:'Annual' }
+  ];
+
   const liabsSorted = useMemo(() => {
     const arr = [...(liabs || [])];
     const { key, dir } = liabSort;
@@ -109,8 +119,13 @@ export default function LiabilitiesPage({ state, setState, settings, sim, dayOpt
                     )}
                   </td>
                   <td className="px-3 py-2 min-w-[10rem]"><NumberInput value={liab.amount} onChange={v => setState(s => { const ls=[...s.liabilities]; ls[realIdx] = {...liab, amount:Number(v)}; return {...s, liabilities: ls}; })} /></td>
-                  <td className="px-3 py-2 min-w-[14rem]"><Select value={liab.frequency || 'exact'} onChange={v => setState(s => { const ls=[...s.liabilities]; ls[realIdx] = {...liab, frequency:v}; return {...s, liabilities: ls}; })} options={LIABILITY_FREQUENCIES} /></td>
-                  <td className="px-3 py-2 min-w-[8rem]"><Select value={liab.day} onChange={v => setState(s => { const ls=[...s.liabilities]; ls[realIdx] = {...liab, day:Number(v)}; return {...s, liabilities: ls}; })} options={dayOptions} disabled={(liab.frequency || 'exact') !== 'exact'} className={(liab.frequency || 'exact') !== 'exact' ? 'bg-gray-50 text-gray-400' : ''} /></td>
+                  <td className="px-3 py-2 min-w-[10rem]"><Select value={liab.frequency || 'exact'} onChange={v => setState(s => { const ls=[...s.liabilities]; ls[realIdx] = {...liab, frequency:v}; return {...s, liabilities: ls}; })} options={freqOptionsShort} /></td>
+                  <td className="px-3 py-2 min-w-[10rem] flex gap-2 items-center">
+                    {liab.frequency === 'annual' && (
+                      <Select value={liab.month || settings.month} onChange={v => setState(s => { const ls=[...s.liabilities]; ls[realIdx] = {...liab, month:Number(v)}; return {...s, liabilities: ls}; })} options={monthOptions} />
+                    )}
+                    <Select value={liab.day} onChange={v => setState(s => { const ls=[...s.liabilities]; ls[realIdx] = {...liab, day:Number(v)}; return {...s, liabilities: ls}; })} options={dayOptions} disabled={(liab.frequency||'exact')!=='exact' && (liab.frequency||'exact')!=='annual'} className={(liab.frequency||'exact')!=='exact' && (liab.frequency||'exact')!=='annual' ? 'bg-gray-50 text-gray-400' : ''} />
+                  </td>
                   <td className="px-3 py-2 min-w-[14rem]"><Select value={srcVal} onChange={v => setState(s => { const ls=[...s.liabilities]; ls[realIdx] = {...liab, source: v}; return {...s, liabilities: ls}; })} options={paymentOptions} /></td>
                   <td className="px-3 py-2">
                     <button className="px-2 py-1 rounded border" title="Delete" onClick={()=> setConfirm({ open:true, text:`Delete ${liab.name||'item'}?`, onYes: ()=> setState(s => { const ls=[...s.liabilities]; ls.splice(realIdx,1); return {...s, liabilities: ls}; }) })}>🗑️</button>

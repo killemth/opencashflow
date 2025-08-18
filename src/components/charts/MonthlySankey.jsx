@@ -28,7 +28,7 @@ export function computeMonthlySankeyData(state, monthSim, expanded) {
     for(const liab of (state.liabilities||[])){
       const matKey=maturityKeyFor(liab); const curKey=keyForDay(d); if(matKey&&curKey>matKey) continue;
       const t=types.includes(liab.type)?liab.type:'Living Expense';
-      if(!occursOn(liab,d,dim)) continue; const amt=Number(liab.amount)||0; if(!amt) continue; const id=liab.id; itemMeta[id]=itemMeta[id]||{ name: liab.name||'Item', type:t };
+      if(!occursOn(liab,d,dim,y,m)) continue; const amt=Number(liab.amount)||0; if(!amt) continue; const id=liab.id; itemMeta[id]=itemMeta[id]||{ name: liab.name||'Item', type:t };
       const isBank=String(liab.source||'').toLowerCase().startsWith('bank');
       if(isBank){ byTypeBank[t]+=amt; bankItemTotals[id]=(bankItemTotals[id]||0)+amt; }
       else { ccItemTotals[id]=(ccItemTotals[id]||0)+amt; ccTypeTotals[t]+=amt; }

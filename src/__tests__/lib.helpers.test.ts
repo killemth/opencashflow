@@ -29,6 +29,12 @@ describe('helpers', () => {
     expect(occursOn(liab, 11, 31)).toBe(false)
   })
 
+  it('occursOn annual specified month/day', () => {
+    const liab = { day: 10, month: 8, frequency: 'annual' }
+    expect(occursOn(liab, 10, 31, 2025, 8)).toBe(true)
+    expect(occursOn(liab, 10, 31, 2025, 7)).toBe(false)
+  })
+
   it('resolveCardId by id and name', () => {
     const cards = [{ id:'c1', name:'Card One' }, { id:'c2', name:'Card Two' }]
     expect(resolveCardId('c1', cards)).toBe('c1')
